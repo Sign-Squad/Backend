@@ -1,6 +1,6 @@
 FROM ubuntu:latest as build
 RUN apt-get update
-RUN apt-get install opendjk-21-jdk -y
+RUN apt-get install openjdk-21-jdk -y
 COPY . .
 RUN ./mvnw spring-boot:run
 
