@@ -5,7 +5,8 @@ RUN apt-get install openjdk-21-jdk maven -y
 
 # Copiar los archivos del proyecto al contenedor
 COPY . .
-
+# Dar permisos de ejecución al archivo mvnw
+RUN chmod +x ./mvnw
 # Compilar el proyecto
 RUN ./mvnw clean package
 
