@@ -7,6 +7,8 @@ RUN apt-get install openjdk-21-jdk maven -y
 COPY . .
 
 # Compilar el proyecto
+RUN ./mvnw clean package
+
 # Fase de ejecución
 FROM openjdk:21-jdk-slim
 EXPOSE 8080
