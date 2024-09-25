@@ -1,7 +1,6 @@
 package pe.upc.singlingo_backend.section.domain.model.aggregates.aggregates;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +17,13 @@ import java.util.List;
 public class Question extends AuditableAbstractAggregateRoot<Question> {
     private String questionType;
     private String title;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "question_id") // La columna de enlace en la tabla de opciones
     private List<Option> options;
+
+    @ManyToOne
+    @JoinColumn(name = "correct_answer_id")
     private Option correctAnswer;
     private int levelID;
 
