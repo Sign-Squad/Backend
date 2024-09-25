@@ -37,8 +37,8 @@ public class QuestionController {
         var question = questionCommandService.handle(createQuestionCommand);
         if(question.isEmpty()) return ResponseEntity.badRequest().build();
 
-        var customerResource = QuestionResourceFromEntityAssembler.toResourceFromEntity(question.get());
-        return ResponseEntity.ok(customerResource);
+        var questionResource = QuestionResourceFromEntityAssembler.toResourceFromEntity(question.get());
+        return ResponseEntity.ok(questionResource);
     }
     @PutMapping("/{id}")
     public ResponseEntity<QuestionResource> updateQuestion(@PathVariable Long id, @RequestBody CreateQuestionResource resource) {
@@ -46,8 +46,8 @@ public class QuestionController {
         var question = questionCommandService.handle(updateQuestionCommand);
         if(question.isEmpty()) return ResponseEntity.badRequest().build();
 
-        var userResource = QuestionResourceFromEntityAssembler.toResourceFromEntity(question.get());
-        return ResponseEntity.ok(userResource);
+        var questionResource = QuestionResourceFromEntityAssembler.toResourceFromEntity(question.get());
+        return ResponseEntity.ok(questionResource);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {

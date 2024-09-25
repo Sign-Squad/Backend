@@ -35,8 +35,8 @@ public class SectionController {
         var section = sectionCommandService.handle(createSectionCommand);
         if(section.isEmpty()) return ResponseEntity.badRequest().build();
 
-        var customerResource = SectionResourceFromEntityAssembler.toResourceFromEntity(section.get());
-        return ResponseEntity.ok(customerResource);
+        var sectionResource = SectionResourceFromEntityAssembler.toResourceFromEntity(section.get());
+        return ResponseEntity.ok(sectionResource);
     }
     @PutMapping("/{id}")
     public ResponseEntity<SectionResource> updateSection(@PathVariable Long id, @RequestBody CreateSectionResource resource) {
@@ -44,8 +44,8 @@ public class SectionController {
         var section = sectionCommandService.handle(updateSectionCommand);
         if(section.isEmpty()) return ResponseEntity.badRequest().build();
 
-        var userResource = SectionResourceFromEntityAssembler.toResourceFromEntity(section.get());
-        return ResponseEntity.ok(userResource);
+        var sectionResource = SectionResourceFromEntityAssembler.toResourceFromEntity(section.get());
+        return ResponseEntity.ok(sectionResource);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSection(@PathVariable Long id) {
