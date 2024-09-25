@@ -13,7 +13,6 @@ import pe.upc.singlingo_backend.section.interfaces.rest.resources.CreateSectionR
 import pe.upc.singlingo_backend.section.interfaces.rest.resources.SectionResource;
 import pe.upc.singlingo_backend.section.interfaces.rest.transform.CreateSectionCommandFromResourceAssembler;
 import pe.upc.singlingo_backend.section.interfaces.rest.transform.SectionResourceFromEntityAssembler;
-import pe.upc.singlingo_backend.users.interfaces.rest.transform.UserResourceFromEntityAssembler;
 
 import java.util.List;
 import java.util.stream.Collectors;

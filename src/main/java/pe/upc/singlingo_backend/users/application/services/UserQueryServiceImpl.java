@@ -21,12 +21,14 @@ public class UserQueryServiceImpl implements UsersQueryService {
 
 
     @Override
-    public List<Users> handle(GetAllUsersQuery query) {
+    public List<Users> handle(GetAllUsersQuery query)
+    {
         return usersRepository.findAll();
     }
 
     @Override
-    public Optional<Users> handle(GetUserByIdQuery query) {
+    public Optional<Users> handle(GetUserByIdQuery query)
+    {
         return usersRepository.findUserById(query.id());
     }
 

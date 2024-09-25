@@ -13,7 +13,6 @@ import pe.upc.singlingo_backend.section.domain.services.QuestionQueryService;
 import pe.upc.singlingo_backend.section.interfaces.rest.resources.CreateQuestionResource;
 import pe.upc.singlingo_backend.section.interfaces.rest.resources.QuestionResource;
 import pe.upc.singlingo_backend.section.interfaces.rest.transform.CreateQuestionCommandFromResourceAssembler;
-import pe.upc.singlingo_backend.section.interfaces.rest.transform.LevelResourceFromEntityAssembler;
 import pe.upc.singlingo_backend.section.interfaces.rest.transform.QuestionResourceFromEntityAssembler;
 
 import java.util.List;

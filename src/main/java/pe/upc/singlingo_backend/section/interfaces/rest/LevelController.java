@@ -14,8 +14,6 @@ import pe.upc.singlingo_backend.section.interfaces.rest.resources.CreateLevelRes
 import pe.upc.singlingo_backend.section.interfaces.rest.resources.LevelResource;
 import pe.upc.singlingo_backend.section.interfaces.rest.transform.CreateLevelCommandFromResourceAssembler;
 import pe.upc.singlingo_backend.section.interfaces.rest.transform.LevelResourceFromEntityAssembler;
-import pe.upc.singlingo_backend.users.interfaces.rest.resources.UserResource;
-import pe.upc.singlingo_backend.users.interfaces.rest.transform.UserResourceFromEntityAssembler;
 
 import java.util.List;
 import java.util.stream.Collectors;
