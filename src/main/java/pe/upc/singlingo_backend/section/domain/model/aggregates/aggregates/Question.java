@@ -16,14 +16,12 @@ import pe.upc.singlingo_backend.shared.domain.model.aggregate.AuditableAbstractA
 public class Question extends AuditableAbstractAggregateRoot<Question> {
     private String questionType;
     private String title;
-    private String content;
     private String correctAnswer;
     private int levelID;
 
     public Question(CreateQuestionCommand command){
         this.questionType = command.questionType();
         this.title = command.title();
-        this.content = command.content();
         this.correctAnswer = command.correctAnswer();
         this.levelID = command.levelID();
     }

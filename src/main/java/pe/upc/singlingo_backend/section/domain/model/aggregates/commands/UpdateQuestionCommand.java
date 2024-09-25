@@ -6,7 +6,6 @@ public record UpdateQuestionCommand(
         @NotBlank long id,
         @NotBlank String questionType,
         @NotBlank String title,
-        @NotBlank String content,
         @NotBlank String correctAnswer,
         @NotBlank int levelID
 ) {

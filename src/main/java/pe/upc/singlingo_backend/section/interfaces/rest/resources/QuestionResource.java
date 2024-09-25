@@ -4,7 +4,6 @@ public record QuestionResource (
         long id,
         String questionType,
         String title,
-        String content,
         String correctAnswer,
         int levelID
 ){

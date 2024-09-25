@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 public record CreateQuestionCommand(
         @NotBlank String questionType,
         @NotBlank String title,
-        @NotBlank String content,
         @NotBlank String correctAnswer,
         @NotBlank int levelID
 ) {
