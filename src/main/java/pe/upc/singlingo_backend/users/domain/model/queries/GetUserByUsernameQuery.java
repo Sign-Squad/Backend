@@ -1,4 +1,4 @@
-package pe.upc.singlingo_backend.users.domain.queries;
+package pe.upc.singlingo_backend.users.domain.model.queries;
 
 public record GetUserByUsernameQuery(String username) {
     public GetUserByUsernameQuery {
