@@ -5,6 +5,6 @@ import pe.upc.singlingo_backend.section.interfaces.rest.resources.QuestionResour
 
 public class QuestionResourceFromEntityAssembler {
     public static QuestionResource toResourceFromEntity(Question entity) {
-        return new QuestionResource(entity.getId(),entity.getQuestionType(),entity.getTitle(),entity.getCorrectAnswer(),entity.getLevelID());
+        return new QuestionResource(entity.getId(),entity.getQuestionType(),entity.getTitle(),entity.getOptions(), entity.getCorrectAnswer(),entity.getLevelID());
     }
 }

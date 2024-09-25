@@ -42,7 +42,7 @@ public class QuestionController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<QuestionResource> updateQuestion(@PathVariable Long id, @RequestBody CreateQuestionResource resource) {
-        var updateQuestionCommand = new UpdateQuestionCommand(id, resource.questionType(), resource.title(), resource.correctAnswer(), resource.levelID());
+        var updateQuestionCommand = new UpdateQuestionCommand(id, resource.questionType(), resource.title(), resource.options(), resource.correctAnswer(), resource.levelID());
         var question = questionCommandService.handle(updateQuestionCommand);
         if(question.isEmpty()) return ResponseEntity.badRequest().build();
 

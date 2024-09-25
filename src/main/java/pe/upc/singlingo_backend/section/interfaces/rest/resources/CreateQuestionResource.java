@@ -1,9 +1,14 @@
 package pe.upc.singlingo_backend.section.interfaces.rest.resources;
 
+import pe.upc.singlingo_backend.section.domain.model.aggregates.aggregates.Option;
+
+import java.util.List;
+
 public record CreateQuestionResource(
         String questionType,
         String title,
-        String correctAnswer,
+        List<Option> options,
+        Option correctAnswer,
         int levelID
 ) {
 }

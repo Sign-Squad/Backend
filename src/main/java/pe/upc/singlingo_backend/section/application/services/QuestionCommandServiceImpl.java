@@ -31,6 +31,7 @@ public class QuestionCommandServiceImpl implements QuestionCommandService {
             Question question = auxQuestion.get();
             question.setQuestionType(command.questionType());
             question.setTitle(command.title());
+            question.setOptions(command.options());
             question.setCorrectAnswer(command.correctAnswer());
             question.setLevelID(command.levelID());
             questionRepository.save(question);
