@@ -24,6 +24,8 @@ public class Users extends AuditableAbstractAggregateRoot<Users> {
 
     private String email;
 
+    private String password;
+
     private int lives;
 
     private String progress;
@@ -35,6 +37,7 @@ public class Users extends AuditableAbstractAggregateRoot<Users> {
     public Users(CreateUserCommand command){
         this.username = command.username();
         this.email = command.email();
+        this.password = command.email();
         this.lives = command.lives();
         this.progress = command.progress();
         this.isVip = command.isVip();

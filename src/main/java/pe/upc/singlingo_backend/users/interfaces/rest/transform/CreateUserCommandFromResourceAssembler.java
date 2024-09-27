@@ -5,6 +5,6 @@ import pe.upc.singlingo_backend.users.interfaces.rest.resources.CreateUserResour
 
 public class CreateUserCommandFromResourceAssembler {
     public static CreateUserCommand toCommandResource(CreateUserResource resource) {
-        return new CreateUserCommand(resource.username(),resource.email(),resource.lives(),resource.progress(),resource.isVip(),resource.removeAds());
+        return new CreateUserCommand(resource.username(),resource.email(), resource.password(), resource.lives(),resource.progress(),resource.isVip(),resource.removeAds());
     }
 }

@@ -33,6 +33,7 @@ public class UserCommandServiceImpl implements UsersCommandService {
             Users user = auxUser.get();
             user.setUsername(command.username());
             user.setEmail(command.email());
+            user.setProgress(command.password());
             user.setLives(command.lives());
             user.setProgress(command.progress());
             user.setVip(command.isVip());

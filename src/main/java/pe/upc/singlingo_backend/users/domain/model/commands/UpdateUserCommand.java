@@ -6,6 +6,7 @@ public record UpdateUserCommand(
         @NotBlank Long id,
         @NotBlank String username,
         @NotBlank String email,
+        @NotBlank String password,
         @NotBlank int lives,
         @NotBlank String progress,
         @NotBlank boolean isVip,

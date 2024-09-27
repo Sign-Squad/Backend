@@ -1,5 +1,6 @@
 package pe.upc.singlingo_backend.users.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name= "Users", description = "Users management endpoints")
 public class UserController {
     private final UsersCommandService usersCommandService;
     private final UsersQueryService usersQueryService;
@@ -41,7 +43,7 @@ public class UserController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<UserResource> updateUser(@PathVariable Long id, @RequestBody CreateUserResource resource) {
-        var updateUserCommand = new UpdateUserCommand(id, resource.username(), resource.email(), resource.lives(),resource.progress(),resource.isVip(),resource.removeAds());
+        var updateUserCommand = new UpdateUserCommand(id, resource.username(), resource.email(), resource.password(), resource.lives(),resource.progress(),resource.isVip(),resource.removeAds());
         var user = usersCommandService.handle(updateUserCommand);
         if(user.isEmpty()) return ResponseEntity.badRequest().build();
 

@@ -4,6 +4,7 @@ public record UserResource(
         Long id,
         String username,
         String email,
+        String password,
         int lives,
         String progress,
         boolean isVip,
