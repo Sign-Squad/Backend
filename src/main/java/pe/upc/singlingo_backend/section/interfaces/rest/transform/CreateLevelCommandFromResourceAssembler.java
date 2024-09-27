@@ -5,6 +5,6 @@ import pe.upc.singlingo_backend.section.interfaces.rest.resources.CreateLevelRes
 
 public class CreateLevelCommandFromResourceAssembler {
     public static CreateLevelCommand toCommandResource(CreateLevelResource resource) {
-        return new CreateLevelCommand(resource.levelName(),resource.description(),resource.totalQuestions(),resource.SectionID());
+        return new CreateLevelCommand(resource.levelName(),resource.iconUrl(), resource.position(), resource.totalQuestions(),resource.SectionID());
     }
 }

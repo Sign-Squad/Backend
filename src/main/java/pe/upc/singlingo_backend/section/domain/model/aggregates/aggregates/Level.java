@@ -15,13 +15,15 @@ import pe.upc.singlingo_backend.shared.domain.model.aggregate.AuditableAbstractA
 @NoArgsConstructor
 public class Level extends AuditableAbstractAggregateRoot<Level> {
     private String levelName;
-    private String description;
+    private String iconUrl;
+    private int position;
     private int totalQuestions;
     private int sectionID;
 
     public Level(CreateLevelCommand command){
         this.levelName = command.levelName();
-        this.description = command.description();
+        this.iconUrl = command.iconUrl();
+        this.position = command.position();
         this.totalQuestions = command.totalQuestions();
         this.sectionID = command.SectionID();
     }

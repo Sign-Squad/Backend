@@ -4,7 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 
 public record CreateLevelCommand (
     @NotBlank String levelName,
-    @NotBlank String description,
+    @NotBlank String iconUrl,
+    @NotBlank int position,
     @NotBlank int totalQuestions,
     @NotBlank int SectionID
 ) {

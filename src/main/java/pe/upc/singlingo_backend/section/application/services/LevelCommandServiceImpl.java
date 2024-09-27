@@ -30,7 +30,8 @@ public class LevelCommandServiceImpl implements LevelCommandService {
         if (auxLevel.isPresent()) {
             Level level = auxLevel.get();
             level.setLevelName(command.levelName());
-            level.setDescription(command.description());
+            level.setIconUrl(command.iconUrl());
+            level.setPosition(command.position());
             level.setTotalQuestions(command.totalQuestions());
             level.setSectionID(command.SectionID());
             levelRepository.save(level);

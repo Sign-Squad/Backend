@@ -5,7 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 public record UpdateLevelCommand(
         @NotBlank long id,
         @NotBlank String levelName,
-        @NotBlank String description,
+        @NotBlank String iconUrl,
+        @NotBlank int position,
         @NotBlank int totalQuestions,
         @NotBlank int SectionID
 ) {
