@@ -1,5 +1,7 @@
 package pe.upc.singlingo_backend.users.domain.model.commands;
 
+import pe.upc.singlingo_backend.users.domain.model.entities.Role;
+
 public record CreateUserCommand(
         String username,
         String email,
@@ -7,6 +9,7 @@ public record CreateUserCommand(
         int lives,
         String progress,
         boolean isVip,
-        boolean removeAds
+        boolean removeAds,
+        Role role
 ) {
 }

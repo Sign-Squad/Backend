@@ -1,5 +1,7 @@
 package pe.upc.singlingo_backend.users.interfaces.rest.resources;
 
+import pe.upc.singlingo_backend.users.domain.model.entities.Role;
+
 public record UserResource(
         Long id,
         String username,
@@ -8,6 +10,7 @@ public record UserResource(
         int lives,
         String progress,
         boolean isVip,
-        boolean removeAds
+        boolean removeAds,
+        Role role
 ) {
 }
