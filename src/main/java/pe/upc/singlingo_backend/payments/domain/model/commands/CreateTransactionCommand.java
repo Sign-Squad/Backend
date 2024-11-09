@@ -7,6 +7,6 @@ public record CreateTransactionCommand(
         @NotBlank double amount,
         @NotBlank String date ,
         @NotBlank String transactionType,
-        @NotBlank Users userID
+        @NotBlank Long userID
 ) {
 }

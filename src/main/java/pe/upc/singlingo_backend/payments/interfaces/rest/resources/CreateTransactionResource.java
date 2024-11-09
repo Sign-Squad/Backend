@@ -6,6 +6,6 @@ public record CreateTransactionResource(
          double amount,
          String date ,
          String transactionType,
-         Users userID
+         Long userID
 ) {
 }
