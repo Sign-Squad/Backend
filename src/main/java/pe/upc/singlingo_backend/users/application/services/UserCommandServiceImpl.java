@@ -1,6 +1,7 @@
 package pe.upc.singlingo_backend.users.application.services;
 
 import org.apache.catalina.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.upc.singlingo_backend.users.domain.model.aggregates.Users;
 import pe.upc.singlingo_backend.users.domain.model.commands.CreateUserCommand;
@@ -14,9 +15,10 @@ import java.util.Optional;
 public class UserCommandServiceImpl implements UsersCommandService {
 
     private final UsersRepository usersRepository;
-
-    public UserCommandServiceImpl(UsersRepository usersRepository) {
+    private final PasswordEncoder passwordEncoder;
+    public UserCommandServiceImpl(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class UserCommandServiceImpl implements UsersCommandService {
             Users user = auxUser.get();
             user.setUsername(command.username());
             user.setEmail(command.email());
-            user.setProgress(command.password());
+            user.setPassword(passwordEncoder.encode(command.password()));
             user.setLives(command.lives());
             user.setProgress(command.progress());
             user.setVip(command.isVip());
