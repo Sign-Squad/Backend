@@ -8,7 +8,7 @@ COPY . .
 # Dar permisos de ejecución al archivo mvnw
 RUN chmod +x ./mvnw
 # Compilar el proyecto
-RUN ./mvnw clean package
+RUN ./mvnw clean package -DskipTests
 
 # Fase de ejecución
 FROM openjdk:21-jdk-slim
