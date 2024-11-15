@@ -6,6 +6,8 @@ public record LevelResource (
         String iconUrl,
         int position,
         int totalQuestions,
-        int SectionID
+        int SectionID,
+        boolean levelComplete
+
 ){
 }

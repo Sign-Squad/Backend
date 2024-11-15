@@ -5,6 +5,7 @@ import pe.upc.singlingo_backend.section.domain.model.aggregates.aggregates.Level
 import pe.upc.singlingo_backend.section.domain.model.aggregates.commands.CreateLevelCommand;
 import pe.upc.singlingo_backend.section.domain.model.aggregates.commands.DeleteLevelCommand;
 import pe.upc.singlingo_backend.section.domain.model.aggregates.commands.UpdateLevelCommand;
+import pe.upc.singlingo_backend.section.domain.model.aggregates.commands.UpdateLevelCompleteCommand;
 import pe.upc.singlingo_backend.section.domain.services.LevelCommandService;
 import pe.upc.singlingo_backend.section.infraestructure.persistence.jpa.LevelRepository;
 
@@ -34,6 +35,20 @@ public class LevelCommandServiceImpl implements LevelCommandService {
             level.setPosition(command.position());
             level.setTotalQuestions(command.totalQuestions());
             level.setSectionID(command.SectionID());
+            level.setLevelComplete(command.levelComplete());
+            levelRepository.save(level);
+            return Optional.of(level);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public Optional<Level> handle(UpdateLevelCompleteCommand command) {
+        var auxLevel = levelRepository.findById(command.id());
+        if (auxLevel.isPresent()) {
+            Level level = auxLevel.get();
+            level.setLevelComplete(command.levelComplete());
             levelRepository.save(level);
             return Optional.of(level);
         } else {

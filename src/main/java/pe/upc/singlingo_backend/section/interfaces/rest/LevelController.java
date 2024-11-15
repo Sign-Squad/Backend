@@ -41,7 +41,9 @@ public class LevelController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<LevelResource> updateLevel(@PathVariable Long id, @RequestBody CreateLevelResource resource) {
-        var updateLevelCommand = new UpdateLevelCommand(id, resource.levelName(),resource.iconUrl(), resource.position(), resource.totalQuestions(),resource.SectionID());
+        var updateLevelCommand = new UpdateLevelCommand(id, resource.levelName(),
+                resource.iconUrl(), resource.position(), resource.totalQuestions(),
+                resource.SectionID(), resource.levelComplete());
         var level = levelCommandService.handle(updateLevelCommand);
         if(level.isEmpty()) return ResponseEntity.badRequest().build();
 

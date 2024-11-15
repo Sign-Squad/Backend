@@ -19,6 +19,7 @@ public class Level extends AuditableAbstractAggregateRoot<Level> {
     private int position;
     private int totalQuestions;
     private int sectionID;
+    private boolean levelComplete;
 
     public Level(CreateLevelCommand command){
         this.levelName = command.levelName();
@@ -26,6 +27,7 @@ public class Level extends AuditableAbstractAggregateRoot<Level> {
         this.position = command.position();
         this.totalQuestions = command.totalQuestions();
         this.sectionID = command.SectionID();
+        this.levelComplete = command.levelComplete();
     }
 
 

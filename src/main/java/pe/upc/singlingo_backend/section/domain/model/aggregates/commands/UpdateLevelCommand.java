@@ -8,7 +8,8 @@ public record UpdateLevelCommand(
         @NotBlank String iconUrl,
         @NotBlank int position,
         @NotBlank int totalQuestions,
-        @NotBlank int SectionID
+        @NotBlank int SectionID,
+        @NotBlank boolean levelComplete
 ) {
 
 }
