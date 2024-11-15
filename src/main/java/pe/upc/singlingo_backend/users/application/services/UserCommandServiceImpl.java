@@ -1,11 +1,11 @@
 package pe.upc.singlingo_backend.users.application.services;
 
-import org.apache.catalina.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.upc.singlingo_backend.users.domain.model.aggregates.Users;
 import pe.upc.singlingo_backend.users.domain.model.commands.CreateUserCommand;
 import pe.upc.singlingo_backend.users.domain.model.commands.DeleteUserCommand;
+import pe.upc.singlingo_backend.users.domain.model.commands.UpdateLivesCommand;
 import pe.upc.singlingo_backend.users.domain.model.commands.UpdateUserCommand;
 import pe.upc.singlingo_backend.users.domain.services.UsersCommandService;
 import pe.upc.singlingo_backend.users.infraestructure.persistence.jpa.UsersRepository;
@@ -26,6 +26,20 @@ public class UserCommandServiceImpl implements UsersCommandService {
         var user = new Users(command);
         usersRepository.save(user);
         return Optional.of(user);
+    }
+
+    @Override
+    public Optional<Users> handle(UpdateLivesCommand command) {
+        var auxUser = usersRepository.findById(command.id());
+        if(auxUser.isPresent()) {
+            Users user = auxUser.get();
+            user.setLives(command.lives());
+            usersRepository.save(user);
+            return Optional.of(user);
+        } else {
+            return Optional.empty();
+        }
+
     }
 
     @Override

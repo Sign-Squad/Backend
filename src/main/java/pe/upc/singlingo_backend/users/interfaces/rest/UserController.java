@@ -1,10 +1,13 @@
 package pe.upc.singlingo_backend.users.interfaces.rest;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pe.upc.singlingo_backend.users.domain.model.commands.DeleteUserCommand;
+import pe.upc.singlingo_backend.users.domain.model.commands.UpdateLivesCommand;
 import pe.upc.singlingo_backend.users.domain.model.commands.UpdateUserCommand;
 import pe.upc.singlingo_backend.users.domain.model.queries.GetAllUsersQuery;
 import pe.upc.singlingo_backend.users.domain.model.queries.GetUserByEmailQuery;
@@ -13,8 +16,11 @@ import pe.upc.singlingo_backend.users.domain.model.queries.GetUserByUsernameQuer
 import pe.upc.singlingo_backend.users.domain.services.UsersCommandService;
 import pe.upc.singlingo_backend.users.domain.services.UsersQueryService;
 import pe.upc.singlingo_backend.users.interfaces.rest.resources.CreateUserResource;
+import pe.upc.singlingo_backend.users.interfaces.rest.resources.LivesResource;
+import pe.upc.singlingo_backend.users.interfaces.rest.resources.UpdateLivesResource;
 import pe.upc.singlingo_backend.users.interfaces.rest.resources.UserResource;
 import pe.upc.singlingo_backend.users.interfaces.rest.transform.CreateUserCommandFromResourceAssembler;
+import pe.upc.singlingo_backend.users.interfaces.rest.transform.UserLivesResource;
 import pe.upc.singlingo_backend.users.interfaces.rest.transform.UserResourceFromEntityAssembler;
 
 import java.util.List;
@@ -23,6 +29,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "/api/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name= "Users", description = "Users management endpoints")
+@Validated
 public class UserController {
     private final UsersCommandService usersCommandService;
     private final UsersQueryService usersQueryService;
@@ -50,6 +57,17 @@ public class UserController {
         var userResource = UserResourceFromEntityAssembler.toResourceFromEntity(user.get());
         return ResponseEntity.ok(userResource);
     }
+    @PatchMapping("/lives/{id}")
+    public ResponseEntity<LivesResource> updateLives(@PathVariable Long id, @RequestBody UpdateLivesResource resource) {
+        var updateLivesUserCommand = new UpdateLivesCommand(id, resource.lives());
+        var user = usersCommandService.handle(updateLivesUserCommand);
+        if (user.isEmpty()) return ResponseEntity.badRequest().build();
+
+        var userLivesResource = UserLivesResource.toResourceFromEntity(user.get());
+        return ResponseEntity.ok(userLivesResource);
+    }
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
