@@ -6,13 +6,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.upc.singlingo_backend.section.domain.model.aggregates.commands.DeleteLevelCommand;
 import pe.upc.singlingo_backend.section.domain.model.aggregates.commands.UpdateLevelCommand;
+import pe.upc.singlingo_backend.section.domain.model.aggregates.commands.UpdateLevelCompleteCommand;
 import pe.upc.singlingo_backend.section.domain.model.aggregates.queries.GetLevelByIDQuery;
 import pe.upc.singlingo_backend.section.domain.model.aggregates.queries.GetLevelsBySectionIDQuery;
 import pe.upc.singlingo_backend.section.domain.services.LevelCommandService;
 import pe.upc.singlingo_backend.section.domain.services.LevelQueryService;
+import pe.upc.singlingo_backend.section.interfaces.rest.resources.CreateLevelCompleteResource;
 import pe.upc.singlingo_backend.section.interfaces.rest.resources.CreateLevelResource;
+import pe.upc.singlingo_backend.section.interfaces.rest.resources.LevelCompleteResource;
 import pe.upc.singlingo_backend.section.interfaces.rest.resources.LevelResource;
 import pe.upc.singlingo_backend.section.interfaces.rest.transform.CreateLevelCommandFromResourceAssembler;
+import pe.upc.singlingo_backend.section.interfaces.rest.transform.LevelCompleteResourceFromEntityAssembler;
 import pe.upc.singlingo_backend.section.interfaces.rest.transform.LevelResourceFromEntityAssembler;
 
 import java.util.List;
@@ -49,6 +53,15 @@ public class LevelController {
 
         var levelResource = LevelResourceFromEntityAssembler.toResourceFromEntity(level.get());
         return ResponseEntity.ok(levelResource);
+    }
+    @PatchMapping("/complete/{id}")
+    public ResponseEntity<LevelCompleteResource> updateLevelComplete(@PathVariable Long id, @RequestBody CreateLevelCompleteResource resource) {
+        var updateLevelCommand = new UpdateLevelCompleteCommand(id, resource.levelComplete());
+        var level = levelCommandService.handle(updateLevelCommand);
+        if(level.isEmpty()) return ResponseEntity.badRequest().build();
+
+        var levelCompleteResource = LevelCompleteResourceFromEntityAssembler.toResourceFromEntity(level.get());
+        return ResponseEntity.ok(levelCompleteResource);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteLevel(@PathVariable Long id) {
