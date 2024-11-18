@@ -22,9 +22,10 @@ public class Question extends AuditableAbstractAggregateRoot<Question> {
     @JoinColumn(name = "question_id") // La columna de enlace en la tabla de opciones
     private List<Option> options;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "correct_answer_id")
     private Option correctAnswer;
+
     private int levelID;
 
     public Question(CreateQuestionCommand command){
